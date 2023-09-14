@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 high_score=0
 term_cols=`tput cols`  ##coloumns 
@@ -49,7 +49,7 @@ init_game(){
     score=0
     temp_sum=0          
     food_count=0        ##food_score
-    snek="...."
+    snek="⋅⋅⋅⋅ "
     snake_color="\e[30;42m"
     no_color="\e[0m"
     direction_directives=(right right right right right)
@@ -70,7 +70,7 @@ game_pause(){
     while read -n 1 key; do
         [[ ${key:-enter} = enter ]] && \
             echo -en "\033[$term_rows;$((term_cols-50))H\033[33mPress <enter> key to pause game           \033[0m" && return;
-        [[ ${key:-enter} = e ]] && game_exit
+        [[ ${key:-enter} = q ]] && game_exit
     done
 }
 
@@ -85,27 +85,27 @@ update() {                                    #Update the coordinates of each no
 
 controls(){
     case ${key:-enter} in 
-        j|J) if [[ ${direction_directives[0]} != "up" ]]
+        s|S) if [[ ${direction_directives[0]} != "up" ]]
              then
              direction_directives[0]="down"
              fi
              ;;
-        k|K) if [[ ${direction_directives[0]} != "down" ]]
+        w|W) if [[ ${direction_directives[0]} != "down" ]]
              then
              direction_directives[0]="up"
              fi
              ;;
-        h|H) if [[ ${direction_directives[0]} != "right" ]]
+        a|A) if [[ ${direction_directives[0]} != "right" ]]
              then 
              direction_directives[0]="left"
              fi
              ;;
-        l|L) if [[ ${direction_directives[0]} != "left" ]]
+        d|D) if [[ ${direction_directives[0]} != "left" ]]
              then 
              direction_directives[0]="right"
              fi
              ;;
-        e|E) game_exit
+        q|Q) game_exit
              ;;
         enter) game_pause
              ;;
@@ -131,7 +131,7 @@ check_collision(){
 }
 
 grow(){
-    snek=".$snek"
+    snek="⋅$snek"
     direction_directives=(${direction_directives[0]} ${direction_directives[@]})
     directionX=(${directionX[0]} ${directionX[@]})
     directionY=(${directionY[0]} ${directionY[@]})
@@ -189,7 +189,7 @@ game_over_text=(
     '                                                 '
     '                   Score:                        '
     '               HighScore:                        '
-    '          press   e   to quit                    '
+    '          press   q   to quit                    '
     '          press   n   to start a new game        '
     '                                                 '
     '                                                 '
@@ -209,7 +209,7 @@ start_game_text=(
     '                    Welcome                      '
     '                                                 '
     '         space or enter   to pause/play          '
-    '         e                to quit the game       '
+    '         q                to quit the game       '
     '                                                 '
     '         Press <Enter> to start the game         '
     '                                                 '
@@ -231,7 +231,7 @@ start_game(){
         game_over
         while read -n 1 anykey; do
             [[ $anykey = n ]] && break;
-            [[ $anykey = e ]] && game_exit;
+            [[ $anykey = q ]] && game_exit;
         done
     done
 }
