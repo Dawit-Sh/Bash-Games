@@ -1,1 +1,1 @@
-coded a buggy shell script game with the Aid of GPT
+Collection of Games Coded in Bash Script 
