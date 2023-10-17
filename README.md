@@ -1,1 +1,1 @@
-Collection of Games Coded in Bash Script which 
+Collection of Games Coded in Bash Script which keeps you
